@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+    <table>
+        <thead>
+        <tr>
+            <th><a href="/add"> Add a reddit</a></th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <div th:if="${search}!=null" th:inline="text">You searched for [[${search}]]</div>
+
+
+        <tr th:each="redditClone :${redditClones}">
+            <td>
+            <a th:href ="${redditClone.url}" th:inline="text">[[${redditClone.url}]]</a>
+            <p th:text ="${redditClone.title}" th:inline="text">Some test text here</p>
+            <p th:text ="${redditClone.username}" th:inline="text">Some test text here</p>
+            <p th:text ="${redditClone.date}" th:inline="text">Some test text here></p>
+
+                <a th:href ="@{/update/{id}(id=${redditClone.id})}">Update</a>-
+                <a th:href ="@{/detail/{id}(id=${redditClone.id})}">Details</a>-
+                <a th:href ="@{/delete/{id}(id=${redditClone.id})}">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
